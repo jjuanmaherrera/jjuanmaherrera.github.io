@@ -11,12 +11,14 @@ Antes de desplegar el OVA debemos definir ciertas configuraciones.
 > En esta guía no voy a mostrar como desplegar el OVA, pero con las siguientes anotaciones vas a poder completarlo sin problemas.
 
 ### 1. Configuración
+
 | Detalle       | Password      |
-| :-----------  | :----------- |
+| -----------  | -----------   |
 | Root Password | *password*    |
 
 ### 2. Configuración de Red
 Registros DNS para la red de Management:
+
 | Detalle       | Nombre            |
 | -----------   | -----------       |
 | FQDN          | haproxy.home.lab  |
@@ -64,12 +66,14 @@ Certificado
 https://github.com/vsphere-tmm/QSG-Setup-Deploy
 
 #### Management
+
 | Port Group        | IP Inicial    | Máscara       |   Gateway     |
 | -----------       | -----------   | -----------   | -----------   | 
 | pg-tmgmt-vlan27   | 172.16.27.10  | 255.255.255.0 | 172.16.27.1   |
 La **Dirección IP inicial** debe tener cinco IPs consecutivas reservadas que no sean utilizadas.
 
 #### Workload
+
 | Port Group        | IP Inicial                    | Máscara       |   Gateway     |
 | -----------       | -----------                   | -----------   | -----------   | 
 | pg-tmgmt-vlan28   | 172.16.28.17 - 172.16.28.30   | 255.255.255.0 | 172.16.27.1   |
