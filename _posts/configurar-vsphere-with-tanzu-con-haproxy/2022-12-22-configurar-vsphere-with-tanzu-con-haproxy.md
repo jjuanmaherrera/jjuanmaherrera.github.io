@@ -12,7 +12,7 @@ Antes de desplegar el OVA debemos definir ciertas configuraciones.
 
 ### 1. Configuración
 | Detalle       | Password      |
-| -----------   | -----------   |
+| :-----------  | :----------- |
 | Root Password | *password*    |
 
 ### 2. Configuración de Red
