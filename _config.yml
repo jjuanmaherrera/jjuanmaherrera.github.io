@@ -12,7 +12,7 @@ mode: dark # default theme "dark" | "light"
 author:
   name: Juan Herrera # author name
   bio: >- # tell to the world
-    Es un Ingeniero de Cloud & Automation en <a href="https://www.wetcom.com" target="_blank"Wetcom</a>.
+    Es un Ingeniero de Cloud & Automation en <a href="https://www.wetcom.com" target="_blank"> Wetcom </a>.
     Este es su blog personal y se encuentra relacionado a VMware vSphere (SDDC), nube hibrida y modernización de aplicaciones. 
   username: Juan Herrera # general username
   github: jjuanma.herrera # github username
