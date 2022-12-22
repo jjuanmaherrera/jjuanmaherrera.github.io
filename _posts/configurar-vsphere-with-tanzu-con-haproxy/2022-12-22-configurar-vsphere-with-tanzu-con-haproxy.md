@@ -4,6 +4,8 @@ A grandes rasgos los pasos a seguir son los siguientes:
 - Desplegar HAProxy
 - Habilitar vSphere with Tanzu
 
+> En la sección de Arquitectura agregaré más contenido referido a vSphere with Tanzu y Balanceadores de carga disponibles.
+
 ## Pre requisitos
 - Cluster con DRS y HA activado
 - Switch Virtual estandard o distribuido
@@ -14,7 +16,7 @@ A grandes rasgos los pasos a seguir son los siguientes:
 
 ## HAProxy
 Antes de desplegar el OVA debemos definir ciertas configuraciones.
-> En esta guía no voy a mostrar como desplegar el OVA, pero con las siguientes anotaciones vas a poder completarlo sin problemas.
+> En esta guía *NO* voy a mostrar como desplegar el OVA, pero con las siguientes tablas vas a poder completarlo sin problemas.
 
 ### 1. Configuración del Appliance
 
@@ -29,11 +31,11 @@ Antes de desplegar el OVA debemos definir ciertas configuraciones.
 | Host Name | haproxy.home.lab  | El nombre FQDN a asignar a la VM de HAProxy  |
 | DNS       | 172.16.26.5       | Lista de servidores DNS separados por coma. **Usar dos servidores DNS como mínimo.**  |
 | IP Management | 172.16.27.2/24    | La dirección IP en formato CIDR para la red de Management. |
-| Gateway Management    | 172.16.27.1 | Gatewat de la red de Management |
+| Gateway Management    | 172.16.27.1 | Gateway de la red de Management |
 | IP Workload   | 172.16.28.2/24 | La dirección IP en formato CIDR para la red de Workload |
-| Gateway Workload  | 172.16.28.1 |  Gatewat de la red de Workload  |
+| Gateway Workload  | 172.16.28.1 |  Gateway de la red de Workload  |
 | IP Frontend  | 172.16.29.2/24 |  La dirección IP en formato CIDR para la red de Frontend. |
-| Gateway Frontend  | 172.16.29.1 |  Gatewat de la red de Workload  |
+| Gateway Frontend  | 172.16.29.1 |  Gateway de la red de Workload  |
 
 ### 3. Configuración de Balanceo de Carga
 
