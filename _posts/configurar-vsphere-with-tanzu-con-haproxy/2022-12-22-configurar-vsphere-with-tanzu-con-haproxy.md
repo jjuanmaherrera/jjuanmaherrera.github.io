@@ -1,5 +1,3 @@
-# Como configurar vSphere with Tanzu con HAProxy
-
 ## Pre requisitos
 - Cluster con DRS y HA activado.
 - Tres subnets
