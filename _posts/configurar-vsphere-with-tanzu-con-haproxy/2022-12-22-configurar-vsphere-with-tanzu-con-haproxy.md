@@ -1,9 +1,15 @@
+La siguiente guía sirve de referencia para poder desplegar **vSphere with Tanzu** en un ambiente productivo. HAProxy es un Balanceador de carga soportado por VMware, y en esta arquitectura, será desplegado con tres NICs: Management, Workload y Frontend para separar el tráfico.
+A grandes rasgos los pasos a seguir son los siguientes:
+- Completar el direccionamiento IP.
+- Desplegar HAProxy
+- Habilitar vSphere with Tanzu
+
 ## Pre requisitos
-- Cluster con DRS y HA activado.
-- Tres subnets
-- Switch virtual estandard o distribuido
+- Cluster con DRS y HA activado
+- Switch Virtual estandard o distribuido
+- Tres subnets configuradas con sus respectivas VLAN en el Switch Virtual
 - OVA HAProxy - [Link de descarga]([https://](https://github.com/haproxytech/vmware-haproxy#download))
-- Storage compartido
+- Storage compartido - *No puede ser local*
 - Content Library
 
 ## HAProxy
@@ -12,54 +18,33 @@ Antes de desplegar el OVA debemos definir ciertas configuraciones.
 
 ### 1. Configuración del Appliance
 
-| Parameter | Description | Remark or Example |
+| Parámetro | Valor | Descripción |
 |---|---|---|
-| Root Password | Initial password for the root user (6-128 characters). | Subsequent changes of password must be performed in operating system. |
-| Permit Root Login |  Option to allow the root user to login to the VM remotely over SSH.  | Root login might be needed for troubleshooting, but keep in mind the security implications of allowing it. |
-| TLS Certificate Authority (ca.crt) |  To use the self-signed CA certificate, leave this field empty. To use your own CA certificate (ca.crt), paste its contents into this field. You might need to Base64-encode the contents. https://www.base64encode.org/  |  If you are using the self-signed CA certificate, the public and private keys will be generated from the certificate.  |
-| Key (ca.key) |  If you are using the self-signed certificate, leave this field empty. If you provided a CA certificate, paste the contents of the certificate private key in this field.  |
-
-
-| Detalle       | Password      |
-| -----------  | -----------   |
-| Root Password | *password*    |
+| Root Password | *root-password* | Password inicial del usuario root. |
 
 ### 2. Configuración de Red
-Registros DNS para la red de Management:
 
-| Detalle       | Nombre            |
-| -----------   | -----------       |
-| FQDN          | haproxy.home.lab  |
-| Server DNS    | 172.16.26.5       |
-
-Dirección IP fija para cada servicio; Management, Workload, Frontend en formato CIDR:
-
-| Detalle       | Port Group            | CIDR              | GATEWAY       |
-| -----------   | -----------           | -----------       | -----------   |
-| Mangement     | pg-tmgmt-vlan27       | 172.16.27.2/24    | 172.16.27.1   |
-| Workload      | pg-tworkload-vlan28   | 172.16.28.2/24    | 172.16.28.1   |
-| Frontend      | pg-tvip-vlan29        | 172.16.29.2/24    | 172.16.29.1   |
-
-![Configuración de red - HAProxy](/assets/img/configurar-vsphere-with-tanzu-con-haproxy/haproxy-network-config.webp "Paso 2 - Configuración de Red").
-
+| Parámetro | Valor | Descripción |
+|---|---|---|
+| Host Name | haproxy.home.lab  | El nombre FQDN a asignar a la VM de HAProxy  |
+| DNS       | 172.16.26.5       | Lista de servidores DNS separados por coma. **Usar dos servidores DNS como mínimo.**  |
+| IP Management | 172.16.27.2/24    | La dirección IP en formato CIDR para la red de Management. |
+| Gateway Management    | 172.16.27.1 | Gatewat de la red de Management |
+| IP Workload   | 172.16.28.2/24 | La dirección IP en formato CIDR para la red de Workload |
+| Gateway Workload  | 172.16.28.1 |  Gatewat de la red de Workload  |
+| IP Frontend  | 172.16.29.2/24 |  La dirección IP en formato CIDR para la red de Frontend. |
+| Gateway Frontend  | 172.16.29.1 |  Gatewat de la red de Workload  |
 
 ### 3. Configuración de Balanceo de Carga
 
-Rango de IPs destinadas al servicio de balanceo de carga (Frontend Network) en formato CIDR. **Este rango no puede contener la IP fija destinada a Frontend en el punto anterior.**
+| Parámetro | Valor | Descripción |
+|---|---|---|
+| Rango de IP del Balanceador de carga | 172.16.29.16/28 | Rango de direcciones IP en formato CIDR válido. **El rango seleccionado no debe solaparse con la IP configurada en el paso anterior para la red de Frontend (en mi caso 172.16.29.2/24)** |
+| Puerto de API | 5556 (Default) | El puerto en el que la API de balanceo de carga escucha |
+| Usuario ID HAProxy | admin | El usuario para autenticarse a la API del Balanceador de carga. |
+| Password HAProxy | *password*    | La password para autenticarse a la API del Balanceador de carga. | 
 
-| Detalle       | CIDR                  |
-| -----------   | -----------           |
-| Frontend      | 172.16.29.16/28       |
-
-*IPs disponibles desde 172.16.29.17 - 172.16.29.30*
-
-Usuario y password que podrá conectarse a la API.
-
-| Detalle       | Valor         |
-| -----------   | -----------   |
-| User          | admin         |
-| Password      | *password*    |
-| API Port      | 5556          |
+*IPs disponibles para la subnet 172.16.29.16/28 es desde 172.16.29.17 - 172.16.29.30*
 
 ## Habilitar vSphere with Tanzu
 ### Storage Policy
