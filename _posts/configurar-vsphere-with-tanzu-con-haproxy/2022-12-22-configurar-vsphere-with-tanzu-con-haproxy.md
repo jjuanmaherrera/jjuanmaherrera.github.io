@@ -10,7 +10,15 @@
 Antes de desplegar el OVA debemos definir ciertas configuraciones.
 > En esta guía no voy a mostrar como desplegar el OVA, pero con las siguientes anotaciones vas a poder completarlo sin problemas.
 
-### 1. Configuración
+### 1. Configuración del Appliance
+
+| Parameter | Description | Remark or Example |
+|---|---|---|
+| Root Password | Initial password for the root user (6-128 characters). | Subsequent changes of password must be performed in operating system. |
+| Permit Root Login |  Option to allow the root user to login to the VM remotely over SSH.  | Root login might be needed for troubleshooting, but keep in mind the security implications of allowing it. |
+| TLS Certificate Authority (ca.crt) |  To use the self-signed CA certificate, leave this field empty. To use your own CA certificate (ca.crt), paste its contents into this field. You might need to Base64-encode the contents. https://www.base64encode.org/  |  If you are using the self-signed CA certificate, the public and private keys will be generated from the certificate.  |
+| Key (ca.key) |  If you are using the self-signed certificate, leave this field empty. If you provided a CA certificate, paste the contents of the certificate private key in this field.  |
+
 
 | Detalle       | Password      |
 | -----------  | -----------   |
