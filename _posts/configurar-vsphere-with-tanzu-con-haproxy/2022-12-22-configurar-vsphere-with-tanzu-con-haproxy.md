@@ -71,6 +71,7 @@ https://github.com/vsphere-tmm/QSG-Setup-Deploy
 | Port Group        | IP Inicial    | Máscara       |   Gateway     |
 | -----------       | -----------   | -----------   | -----------   | 
 | pg-tmgmt-vlan27   | 172.16.27.10  | 255.255.255.0 | 172.16.27.1   |
+
 La **Dirección IP inicial** debe tener cinco IPs consecutivas reservadas que no sean utilizadas.
 
 #### Workload
