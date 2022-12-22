@@ -42,6 +42,7 @@ Rango de IPs destinadas al servicio de balanceo de carga (Frontend Network) en f
 | Detalle       | CIDR                  |
 | -----------   | -----------           |
 | Frontend      | 172.16.29.16/28       |
+
 *IPs disponibles desde 172.16.29.17 - 172.16.29.30*
 
 Usuario y password que podrá conectarse a la API.
