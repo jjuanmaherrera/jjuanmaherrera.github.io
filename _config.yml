@@ -1,10 +1,9 @@
 # Site settings
 title: Juan Herrera - Blog # site title
 description: >- # site description
-  He's writing in Bahasa about web technology and experience as a journal 
-  for documentation things that he learned, meet him <a href="https://github.com/piharpi" target="_blank" rel="noopener">@github</a>.
-lang: en-US # default lang
-timezone: Asia/Jakarta # set your timezone
+  Juan Herrera es un Ingeniero de Cloud & Automation en Wetcom. Este es su blog personal y se encuentra relacionado a VMware vSphere (SDDC), nube hibrida y modernización de aplicaciones. Pueden contactarme a través de <a href="https://www.linkedin.com/in/jm-herrera/" target="_blank">Linkedin</a>
+lang: es-ES # default lang
+timezone: America/Argentina/Buenos_Aires # set your timezone
 image: assets/img/ogp.png # This image used for Open Graph more info https://ogp.me/
 repo: https://github.com/jjuanmaherrera # site repo [optional]
 mode: dark # default theme "dark" | "light"
@@ -13,11 +12,10 @@ mode: dark # default theme "dark" | "light"
 author:
   name: Juan Herrera # author name
   bio: >- # tell to the world
-    
-    The minimalist Jekyll theme, light and dark mode support, for running a personal site and blog, 
-    meet Klisé theme at <a href="https://github.com/piharpi/jekyll-klise" target="_blank" rel="noopener">@github</a>.
-  username: username # general username
-  github: github_username # github username
+    Es un Ingeniero de Cloud & Automation en <a href="https://www.wetcom.com" target="_blank"Wetcom</a>.
+    Este es su blog personal y se encuentra relacionado a VMware vSphere (SDDC), nube hibrida y modernización de aplicaciones. 
+  username: Juan Herrera # general username
+  github: jjuanma.herrera # github username
   twitter: twitter_username # twitter username
   facebook: facebook_username # facebook username
   email: jjuanma.herrera@gmail.com # email adress
